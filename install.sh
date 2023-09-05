@@ -2,7 +2,7 @@
 
 userInputs(){
 
-    echo -e "\n\n****** Welecome to installation of the Rocket SSH Panel ****** \n"
+    echo -e "\n\n****** Welcome to installation of the HighVPN SSH Panel ****** \n"
     printf "Default username is \e[33m${username}\e[0m, let it blank to use this username: "
     read usernameTmp
 
@@ -41,11 +41,6 @@ userInputs(){
     if [[ -n "${panelPortTmp}" ]]; then
      panelPort=${panelPortTmp}
     fi
-}
-
-getAppVersion(){
-    version=$(sudo curl -Ls "https://api.github.com/repos/mahmoud-ap/rocket-ssh/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-    echo $version;
 }
 
 encryptAdminPass(){
@@ -147,7 +142,7 @@ copyPanelRepo(){
         rm -rf /var/www/html/panel
     fi
 
-   link=https://github.com/mahmoud-ap/rocket-ssh/raw/master/app.zip
+   link=https://github.com/RmnJL/HighVPN-SSH/raw/master/app.zip
 
     if [[ -n "$link" ]]; then
         rm -fr /var/www/html/update.zip
@@ -255,8 +250,8 @@ configAppche(){
     <IfModule mod_gnutls.c>
         Listen 443
     </IfModule>" > /etc/apache2/ports.conf
-    echo '#RocketSSH' > /var/www/rocketsshport
-    sudo sed -i -e '$a\'$'\n''rocketsshport '$serverPort /var/www/rocketsshport
+    echo '#HighVPNSSH' > /var/www/HighVPNsshport
+    sudo sed -i -e '$a\'$'\n''HighVPNsshport '$serverPort /var/www/HighVPNsshport
     wait
     ##Restart the apache server to use new port
     sudo /etc/init.d/apache2 reload
@@ -294,7 +289,7 @@ configDatabase(){
     mysql -e "GRANT ALL ON *.* TO '${username}'@'localhost';" &
     wait
     mysql -u ${username} --password=${password} ${dbName} < /var/www/html/panel/assets/backup/db.sql
-    sed -i "s/DB_DATABASE=rocket_ssh/DB_DATABASE=${dbName}/" /var/www/html/panel/.env
+    sed -i "s/DB_DATABASE=HighVPN_SSH/DB_DATABASE=${dbName}/" /var/www/html/panel/.env
     sed -i "s/DB_USERNAME=root/DB_USERNAME=$username/" /var/www/html/panel/.env
     sed -i "s/DB_PASSWORD=/DB_PASSWORD=$password/" /var/www/html/panel/.env
     sed -i "s/PORT_SSH=22/PORT_SSH=$sshPort/" /var/www/html/panel/.env
@@ -326,7 +321,7 @@ configCronMaster(){
     cronUrl=$(echo "$httpProtcol://${ipv4}:$panelPort/cron/master")
     cat > /var/www/html/kill.sh << ENDOFFILE
             #!/bin/bash
-            #By Mahmoud
+            #By RmnJL
             i=0
             while [ 1i -lt 20 ]; do
             cmd=(bbh '$cronUrl')
@@ -354,7 +349,7 @@ ENDOFFILE
 installationInfo(){
     clear
     echo -e "\n"
-    bannerText=$(curl -s https://raw.githubusercontent.com/mahmoud-ap/rocket-ssh/master/rocket-banner.txt)
+    bannerText=$(curl -s https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/iFixFone-banner.txt)
     printf "%s" "$bannerText"
     echo -e "\n"
     printf "Panel Link : $httpProtcol://${ipv4}:$panelPort/login"
@@ -379,7 +374,7 @@ sshPort=22
 panelPort=8081
 httpProtcol="http"
 panelPath=$(getPanelPath)
-nethogsLink=https://raw.githubusercontent.com/mahmoud-ap/nethogs-json/master/install.sh
+nethogsLink=https://raw.githubusercontent.com/RmnJL/nethogs-json/master/install.sh
 
 checkRoot
 userInputs
