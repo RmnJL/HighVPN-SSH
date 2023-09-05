@@ -1,6 +1,6 @@
 <p align="center">
 <picture>
-<img width="160" height="160"  alt="XPanel" src="https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/images/logo.png">
+<img width="160" height="160"  alt="XPanel" src="https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/images/logo.png">
 </picture>
   </p> 
 <p align="center">
@@ -44,7 +44,7 @@ Ubuntu 18+<br>
 برای نصب دستور زیر را وارد کنید<br>
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/install.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/install.sh --ipv4)
 ```
 
 # آپدیت پنل ادمین
@@ -52,7 +52,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/insta
 نیازی به نصب مجدد نیست . با این روش فقط پنل ادمین آپدیت می شود . در این روش اطلاعات دیتابیس تغییر نمی کند
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/update-panel.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/update-panel.sh --ipv4)
 ```
 
 # نصب وردپرس
@@ -60,7 +60,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/updat
 جهت نصب وردپرس دستور زیر را اجرا کنید. بعد از نصب حتما اطلاعات را یادداشت کرده و در مراحل بعدی از آن استفاده کنید
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/install-wp.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/install-wp.sh --ipv4)
 ```
 
 # بلاک کردن آی پی های ایران
@@ -68,7 +68,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/insta
 جهت بلاک کردن آی پی های ایران از دستور زیر استفاده کنید
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/master/block-ir-ip.sh --ipv4)
+bash <(curl -Ls https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/block-ir-ip.sh --ipv4)
 ```
 
 
