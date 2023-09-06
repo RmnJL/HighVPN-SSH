@@ -1,4 +1,3 @@
-
 # Set URLs and file paths
 repoLink="https://github.com/RmnJL/HighVPN-SSH/raw/main/app.zip"
 
@@ -32,4 +31,3 @@ wait
 chown www-data:www-data /var/www/html/panel/index.php
 
 echo "PHP code updated and .env content restored."
-
