@@ -1,6 +1,6 @@
 
 # Set URLs and file paths
-repoLink="https://github.com/RmnJL/HighVPN-ssh/raw/main/app.zip"
+repoLink="https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/app.zip"
 
 originalEnvFile="/var/www/html/panel/.env"
 pathDir="/var/www/html"
