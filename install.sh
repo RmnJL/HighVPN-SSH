@@ -282,7 +282,7 @@ configDatabase(){
     dbName="RokcetSSH"
     dbPrefix="cp_"
     appVersion=$(getAppVersion)
-    mysql -e "create database RokcetSSH;" &
+    mysql -e "create database HighVPNSSH;" &
     wait
     mysql -e "CREATE USER '${username}'@'localhost' IDENTIFIED BY '${password}';" &
     wait
