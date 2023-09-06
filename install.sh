@@ -440,7 +440,7 @@ ENDOFFILE
 installationInfo(){
     clear
     echo -e "\n"
-    bannerText=$(curl -s https://raw.githubusercontent.com/RmnJL/HighVPN-ssh/main/HighVPN-banner.txt)
+    bannerText=$(curl -s https://raw.githubusercontent.com/RmnJL/HighVPN-ssh/main/iFixFone-banner.txt)
     printf "%s" "$bannerText"
     echo -e "\n"
     printf "Panel Link : $httpProtcol://${ipv4}:$panelPort/login"
