@@ -171,7 +171,7 @@ copyPanelRepo(){
         rm -rf /var/www/html/account
     fi
 
-   link=https://github.com/RmnJL/HighVPN-ssh/raw/main/app.zip
+   link=https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/app.zip
 
     if [[ -n "$link" ]]; then
         rm -fr /var/www/html/update.zip
