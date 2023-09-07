@@ -328,7 +328,7 @@ installNethogs(){
 }
 
 configDatabase(){
-    dbName="HighVPNSSH"
+    dbName="High_VPN"
     dbPrefix="cp_"
     appVersion=$(getAppVersion)
     mysql -e "create database $dbName;" &
@@ -339,16 +339,16 @@ configDatabase(){
     wait
 
     # Dump and remove the old database
-    if mysql -u root -e "USE RokcetSSH" 2>/dev/null; then
+    if mysql -u root -e "USE High_VPN" 2>/dev/null; then
         # Dump and restore the old database to the new database
-        mysqldump -u root --force RokcetSSH | mysql -u root $dbName
-        echo "Data has been dumped from 'RokcetSSH' to '$dbName'."
+        mysqldump -u root --force High_VPN | mysql -u root $dbName
+        echo "Data has been dumped from 'High_VPN' to '$dbName'."
 
         # Remove the old database
-        # mysql -u root -e "DROP DATABASE RokcetSSH;"
-        echo "Old database 'RokcetSSH' has been removed."
+        # mysql -u root -e "DROP DATABASE High_VPN;"
+        echo "Old database 'High_VPN' has been removed."
     else
-        echo "Database 'RokcetSSH' does not exist."
+        echo "Database 'High_VPN' does not exist."
     fi
 
     sed -i "s/DB_DATABASE=HighVPN_ssh/DB_DATABASE=${dbName}/" /var/www/html/panel/.env
