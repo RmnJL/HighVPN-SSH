@@ -2,7 +2,7 @@
 
 userInputs(){
 
-    echo -e "\n\n****** Welecome to installation of the HighVPN SSH Panel ****** \n"
+    echo -e "\n\n****** Welcome to installation of the HighVPN SSH Panel ****** \n"
     printf "Default username is \e[33m${username}\e[0m, let it blank to use this username: "
     read usernameTmp
 
@@ -18,7 +18,7 @@ userInputs(){
      password=${passwordTmp}
     fi
 
-    echo -e "\nPlease input UDPGW Port ."
+    echo -e "\nPlease input UDPGW (VideoCall Fixing ...) Port ."
     printf "Default Port is \e[33m${udpPort}\e[0m, let it blank to use this Port: "
     read udpPortTmp
 
@@ -26,7 +26,7 @@ userInputs(){
      udpPort=${udpPortTmp}
     fi
 
-    echo -e "\nPlease input SSH Port ."
+    echo -e "\nPlease input SSH Port (better not to use the default port 22) ."
     printf "Default Port is \e[33m${sshPort}\e[0m, let it blank to use this Port: "
     read sshPortTmp
 
@@ -41,6 +41,11 @@ userInputs(){
     if [[ -n "${panelPortTmp}" ]]; then
      panelPort=${panelPortTmp}
     fi
+}
+
+getAppVersion(){
+    version=$(sudo curl -Ls "https://api.github.com/repos/RmnJL/HighVPN-SSH/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    echo $version;
 }
 
 encryptAdminPass(){
@@ -330,7 +335,6 @@ installNethogs(){
 configDatabase(){
     dbName="High_VPN"
     dbPrefix="cp_"
-    appVersion=$(getAppVersion)
     mysql -e "create database $dbName;" &
     wait
     mysql -e "CREATE USER '${username}'@'localhost' IDENTIFIED BY '${password}';" &
@@ -345,13 +349,13 @@ configDatabase(){
         echo "Data has been dumped from 'High_VPN' to '$dbName'."
 
         # Remove the old database
-        # mysql -u root -e "DROP DATABASE High_VPN;"
+        mysql -u root -e "DROP DATABASE High_VPN;"
         echo "Old database 'High_VPN' has been removed."
     else
         echo "Database 'High_VPN' does not exist."
     fi
 
-    sed -i "s/DB_DATABASE=HighVPN_ssh/DB_DATABASE=${dbName}/" /var/www/html/panel/.env
+    sed -i "s/DB_DATABASE=High_VPN/DB_DATABASE=${dbName}/" /var/www/html/panel/.env
     sed -i "s/DB_USERNAME=root/DB_USERNAME=$username/" /var/www/html/panel/.env
     sed -i "s/DB_PASSWORD=/DB_PASSWORD=$password/" /var/www/html/panel/.env
     sed -i "s/PORT_SSH=22/PORT_SSH=$sshPort/" /var/www/html/panel/.env
@@ -440,7 +444,7 @@ ENDOFFILE
 installationInfo(){
     clear
     echo -e "\n"
-    bannerText=$(curl -s https://raw.githubusercontent.com/RmnJL/HighVPN-ssh/main/iFixFone-banner.txt)
+    bannerText=$(curl -s https://raw.githubusercontent.com/RmnJL/HighVPN-SSH/main/iFixFone-banner.txt)
     printf "%s" "$bannerText"
     echo -e "\n"
     printf "Panel Link : $httpProtcol://${ipv4}:$panelPort/login"
