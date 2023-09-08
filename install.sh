@@ -43,11 +43,6 @@ userInputs(){
     fi
 }
 
-getAppVersion(){
-    version=$(sudo curl -Ls "https://api.github.com/repos/RmnJL/HighVPN-SSH/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-    echo $version;
-}
-
 encryptAdminPass(){
    tempPass=$(php -r "echo password_hash('$password', PASSWORD_BCRYPT);");
    echo $tempPass
@@ -293,7 +288,7 @@ configAppache(){
     <IfModule mod_gnutls.c>
         Listen 443
     </IfModule>" > /etc/apache2/ports.conf
-    echo '#HighVPNSSH' > /var/www/HighVPNsshport
+    echo '#HighVPN' > /var/www/HighVPNsshport
     sudo sed -i -e '$a\'$'\n''HighVPNsshport '$serverPort /var/www/HighVPNsshport
     wait
     
@@ -307,7 +302,7 @@ configAppache(){
     <IfModule mod_gnutls.c>
         Listen 443
     </IfModule>" > /etc/apache2/ports.conf
-    echo '#HighVPNSSH' > /var/www/HighVPNsshport
+    echo '#HighVPN' > /var/www/HighVPNsshport
     sudo sed -i -e '$a\'$'\n''HighVPNsshport '$serverPort /var/www/HighVPNsshport
     wait
     ##Restart the apache server to use new port
