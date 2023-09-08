@@ -342,6 +342,17 @@ configDatabase(){
     mysql -e "GRANT ALL ON *.* TO '${username}'@'localhost';" &
     wait
 
+    # Dump and remove the old database
+    if mysql -u root -e "USE highvpn" 2>/dev/null; then
+        # Dump and restore the old database to the new database
+        mysqldump -u root --force highvpn | mysql -u root $dbName
+        echo "Data has been dumped from 'highvpn' to '$dbName'."
+
+        # Remove the old database
+        mysql -u root -e "DROP DATABASE highvpn;"
+        echo "Old database 'highvpn' has been removed."
+    else
+        echo "Database 'highvpn' does not exist."
     fi
 
     sed -i "s/DB_DATABASE=High_VPN/DB_DATABASE=${dbName}/" /var/www/html/panel/.env
